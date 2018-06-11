@@ -1,0 +1,95 @@
+/******************************************************************* MOST BASIC RESET */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*********************************************************************** BASIC STYLES */
+html, body 	{
+		height: 		100%;
+}
+body {
+	color: #4F4D49;
+	background: #2e2d2b;
+  font-family: sans-serif;
+  margin: 0 auto;
+}
+a { color: #3343d6; }
+
+@media (max-width: 599px) {
+  body {
+    width: 320px;
+    font-size: 62.5%;
+    line-height: 1.44444444444;
+  }
+  #wrapper {
+    width: 300px;
+    padding-top: 300px;
+  }
+  section, footer { padding: 0 1em; }
+}
+@media (min-width: 600px) {
+  body {
+    width: 520px;
+    font-size: 80%;
+    line-height: 1.44444444444;
+  }
+  #wrapper {
+    width: 500px;
+    padding-top: 500px;
+  }
+  section, footer { padding: 0 5em; }
+}
+
+#wrapper {
+	min-height: 100%;
+
+	margin: 0 auto;
+
+  /* bg avatar */
+  background: #eeeeee url(img/avatar.jpg) no-repeat;
+  background-size: 100%;
+}
+
+section { margin-bottom: 3em}
+h1 { margin-top: 0.5em; }
+h2 { margin-top: 1em; }
+section h1 {
+  font-size: 3.6em;
+}
+section h2 {
+  font-size: 2.4em;
+  line-height: 1.25;
+}
+
+section p {
+  font-size: 1.8em;
+  line-height: 1.44444444444444444444;
+  margin-bottom: .72222222222222222222em;
+}
+
+.social {
+margin: 1em auto;
+text-align: center;
+}
+.social li {
+  display: inline-block;
+  margin: 0 1px 5px 0;
+}
+ul  {
+  margin: 1em;
+  list-style-position: inside;
+}
+ul li {
+  font-size: 1.4em;
+  line-height: 1.42857142857;
+  list-style-position: inside;
+  margin-bottom: 5px;
+}
+
+footer {
+	font-size: 1.6em;
+	background: #ccc;
+	}
+
+
