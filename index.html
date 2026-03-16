@@ -1,413 +1,1488 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="Description" content="Personal website of Sergi Meseguer, freelance web developer" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Sergi Meseguer aka zigotica</title>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:500|Raleway&display=swap" rel="stylesheet">
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-			}
 
-			html { 
-				box-sizing: border-box;
-			}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sergimeseguer.com/" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self';" />
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
+  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
+  <link rel="preload" href="fonts/playfair-roman.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/playfair-italic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/ibm-plex-sans-300.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+  <title>Sergi Meseguer | Lead Engineer, Barcelona</title>
+  <meta name="description" content="zigotica has been my handle for 20+ years. Time to own my name. Visit sergimeseguer.com." />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-			*, 
-			*:before, 
-			*:after { 
-				box-sizing: inherit;
-			}
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zigotica.com/" />
+  <meta property="og:title" content="Sergi Meseguer — zigotica" />
+  <meta property="og:description"
+    content="Barcelona-based Lead Engineer with 20+ years building digital products at scale. Architectural thinking, AI practice, and the craft of building teams that ship well." />
+  <meta property="og:image" content="https://zigotica.com/sergi-meseguer.jpg" />
+  <meta property="og:site_name" content="zigotica" />
 
-			body {
-				position: relative;
-				width: 320px;
-				font-size: 62.5%;
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://zigotica.com/" />
+  <meta name="twitter:title" content="Sergi Meseguer — zigotica" />
+  <meta name="twitter:description"
+    content="Barcelona-based Lead Engineer with 20+ years building digital products at scale. Architectural thinking, AI practice, and the craft of building teams that ship well." />
+  <meta name="twitter:image" content="https://zigotica.com/sergi-meseguer.jpg" />
+  <meta name="twitter:site" content="@zigotica" />
 
-				color: #4F4D49;
-				margin: 0 auto;
-			}
+  <style>
+    /***
+    The new CSS reset - modified from: https://github.com/elad2412/the-new-css-reset
+    ***/
 
-			a {
-				color: #3343d6;
-			}
+    /*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+    */
+    *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+      all: unset;
+      display: revert;
+    }
 
-			#wrapper {
-				background: rgb(255,255,255);
-				background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(221,221,221,1) 100%);
-				padding: 0 10px;
-			}
+    /* Preferred box-sizing value */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-			header,
-			section {
-				width: 100%;
-				margin: 0 auto;
-				padding: 0 1em;
-			}
+    /* Reapply the pointer cursor for anchor tags */
+    a,
+    button {
+      cursor: revert;
+    }
 
-			header {
-				position: relative;
-				padding-top: 200vh;
-				transition: padding 700ms ease-in-out, opacity 1s ease-in-out;
-			}
-
-			section { 
-				margin-bottom: 3em;
-			}
-
-			h1 { 
-				margin: 0.5em 0 0.2em 0;
-				font-family: 'Montserrat', serif;
-				font-size: 3.3em;
-			}
-
-			h2 {
-				font-family: 'Montserrat', serif;
-				font-size: 2.4em;
-				line-height: 1.25;
-				margin-top: 1em; 
-			}
-
-			p {
-				font-family: 'Raleway', sans-serif;
-				font-size: 1.8em;
-				line-height: 1.444;
-				margin-bottom: 1em;
-			}
+    /* Remove list styles (bullets/numbers) */
+    ol,
+    ul,
+    menu {
+      list-style: none;
+    }
 
 
-			ul  {
-				font-family: 'Raleway', sans-serif;
-				margin: 2em;
-				list-style-position: inside;
-			}
+    /* ═══════════════════════════════════════════════════════════
+     1. MASTER TOKENS  —  Raw primitives, never used in components
+     ═══════════════════════════════════════════════════════════ */
+    :root {
+      /* ── Primitive Colors ── */
+      --base-cream: #e7ecf4;
+      --base-terracotta: #c9826b;
+      --base-gold: #f0d399;
+      --base-slate: #8a8070;
+      --base-muted: #d4cfc5;
+      --base-rose: #d06f79;
+      --base-sage: #b1d196;
+      --base-sky: #8cafd2;
+      --base-mauve: #c895bf;
 
-			ul li {
-				font-size: 1.4em;
-				line-height: 1.428;
-				list-style-position: inside;
-				margin-bottom: 5px;
-			}
+      --base-gray-95: #0e0d0b;
+      --base-gray-90: #1e1e1e;
+      --base-gray-85: #262626;
+      --base-gray-80: #2b2b2b;
+      --base-gray-75: #303030;
 
-			footer {
-				font-family: 'Raleway', sans-serif;
-				font-size: 1.6em;
-				margin-top: 80vh;
-				padding: 1em 1.8em;
-				border-top: 1px solid #999;
-			}
+      --base-white: #ffffff;
+
+      /* ── Primitive Alpha Colors ── */
+      --base-gray-95-op-40: color-mix(in srgb, var(--base-gray-95) 40%, transparent);
+      --base-gray-95-op-92: color-mix(in srgb, var(--base-gray-95) 92%, transparent);
+      --base-gold-op-15: color-mix(in srgb, var(--base-gold) 15%, transparent);
+      --base-white-op-05: color-mix(in srgb, var(--base-white) 5%, transparent);
+      --base-white-op-gradient: linear-gradient(135deg, var(--base-white-op-05) 0%, transparent 60%);
+      --base-terracotta-op-25: color-mix(in srgb, var(--base-terracotta) 25%, transparent);
+      --base-sky-op-20: color-mix(in srgb, var(--base-sky) 20%, transparent);
+
+      /* ── Primitive Cursor SVG ── */
+      --base-cursor-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpolygon points='10,2 22,7 20,21 4,19 2,10' stroke='%23f0d399' stroke-width='1' fill='none'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%23c9826b'/%3E%3C/svg%3E") 12 12, auto;
+      --base-cursor-svg-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'%3E%3Cpolygon points='10,2 22,7 20,21 4,19 2,10' stroke='%23f0d399' stroke-width='1' fill='none'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%23c9826b'/%3E%3C/svg%3E") 12 12, auto;
+
+      /* ── Primitive Size Scale ── */
+      --base-xxs: 0.5rem;
+      --base-xs: 1rem;
+      --base-sm: 2rem;
+      --base-md: 4rem;
+      --base-lg: 6rem;
+      --base-xl: 8rem;
+      --base-xxl: 10rem;
 
 
-			header h1,
-			header p,
-			section h2,
-			section li {
-				transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
-				opacity: 1;
-				opacity: var(--ratio);
-				transform-origin: top left;
-				transform: rotate(0);
-				transform: rotate(var(--angle)) scale(var(--ratio));
-			}
 
-			header .content,
-			section {
-				transition: opacity 3s ease-in-out;
-				opacity: 0;
-			}
+      /* ── Primitive Layout Dimensions ── */
+      --base-layout-xl: 1400px;
+      --base-layout-xxl: 2000px;
 
-			header .image {
-				display: block;
-				position: fixed;
-				top: 0;
-				left: 0;
-				z-index: 99;
-			}
+      /* ── Primitive Viewport Heights ── */
+      --base-vh-40: 40vh;
+      --base-vh-60: 60vh;
+      --base-vh-90: 90vh;
+      --base-vh-100: 100vh;
 
-			header .image .triangle,
-			header .image .dot {
-				position: absolute;
-				top: 0;
-				left: 0;
-				display: block;
-				width: 240px;
-				height: 240px;
-			}
+      /* ── Primitive Borders ── */
+      --base-border-thin: 1px;
+      --base-border-accent: 2px;
 
-			header .image .triangle {
-				-webkit-clip-path: polygon(0 0, 100% 0, 0 100%, 0 100%);
-				clip-path: polygon(0 0, 100% 0, 0 100%, 0 100%);
-			}
 
-			header .image .dot {
-				transition: clip-path 400ms ease-in-out;
-				-webkit-clip-path: circle(0% at 25% 35%);
-				clip-path: circle(0% at 25% 35%);
-			}
 
-			header .image .preloading {
-				animation-duration: 180ms;
-				animation-iteration-count: 10;
-				animation-direction: alternate;
-				animation-name: beat;
-			}
+      /* ── Primitive Timings ── */
+      --base-duration-fast: 0.15s;
+      --base-duration-normal: 0.35s;
+      --base-duration-slow: 0.8s;
+      --base-duration-a11y: 0.01ms;
 
-			header .image img {
-				display: block;
-				width: 100%;
-				height: 100%;
-			}
+      /* ── Primitive Animation Delays ── */
+      --base-delay-1: 0.2s;
+      --base-delay-2: 0.35s;
+      --base-delay-3: 0.5s;
+      --base-delay-4: 0.65s;
 
-			@keyframes beat {  
-				from {
-					opacity: 0;
-					-webkit-clip-path: circle(0 at 25% 35%);
-					clip-path: circle(0 at 25% 35%);
-				}
-				to {
-					opacity: 1;
-					-webkit-clip-path: circle(2% at 25% 35%);
-					clip-path: circle(2% at 25% 35%);
-				}
-			}
+      /* ── Primitive Easing ── */
+      --base-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
-			@media (max-width: 599px) {
-				body {
-					background: rgb(255,255,255);
-					background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(221,221,221,1) 100%);
-				}
-			}
+      /* ── Primitive Transforms ── */
+      --base-translate-fade-from: translateY(24px);
+      --base-translate-reveal-from: translateY(28px);
+      --base-translate-hover-up: translateY(-2px);
+      --base-scale-tile-from: scale(0.96);
 
-			@media (min-width: 600px) {
-				body {
-					transition: background-image 400ms ease-in-out;
-					width: 520px;
-					font-size: 80%;
-					background-color: #2e2d2b;
-					background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGElEQVQoU2PU09X+z0AEYBxViC+UqB88ADuFDz3VE4VhAAAAAElFTkSuQmCC);
-					background-repeat: repeat;
-					background-attachment: fixed;
-				}
+      /* ── Primitive Stroke ── */
+      --base-stroke-thin: 1;
+      --base-stroke-cursor: 1;
+    }
 
-				#wrapper {
-					padding: 0 40px;
-				}
 
-				header .image {
-					left: calc((100% - 520px) / 2);
-				}
 
-				header .image .triangle,
-				header .image .dot {
-					width: 360px;
-					height: 360px;
-				}
-				
-				footer {
-					padding: 2em 3em;
-				}
-			}
+    /* ═══════════════════════════════════════════════════════════
+   2. SEMANTIC TOKENS  —  Intent-named, consumed by components
+   ═══════════════════════════════════════════════════════════ */
+    :root {
+      /* ── Color: Surface ── */
+      --color-bg-hero: var(--base-gray-95-op-40);
+      --color-bg-nav: var(--base-gray-95-op-92);
+      --color-bg-contact: var(--base-gray-95-op-40);
+      --color-bg-footer: var(--base-gray-95-op-92);
 
-			/* Fake preloaded state */
-			@media (min-width: 600px) {
-				body.preloaded {
-					background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAASElEQVQoU2PU09X+z0AAHDh4mIGRkEKQIgd7W/wKYYpAFuI0EVkRToXoirAqxKYIQyEuRSgK8SmCKySkCKzw3bt3/0HhRAgAACY7LIFnnDgmAAAAAElFTkSuQmCC);
-				}
-			}
+      /* ── Color: Text ── */
+      --color-text-primary: var(--base-cream);
+      --color-text-muted: var(--base-muted);
+      --color-text-subtle: var(--base-slate);
+      --color-text-on-gold: var(--base-gray-90);
 
-			body.preloaded header .image .dot {
-				-webkit-clip-path: circle(100% at 0 0);
-				clip-path: circle(100% at 0 0);
-			}
+      /* ── Color: Border ── */
+      --color-border-main: var(--base-gold-op-15);
+      --color-border-accent: var(--base-terracotta);
 
-			body.preloaded header {
-				padding-top: 50vh;
-			}
+      /* ── Color: Section Lines ── */
+      --color-section-line: var(--base-terracotta-op-25);
 
-			body.preloaded header .content,
-			body.preloaded section {
-				opacity: 1;
-			}
-		</style>
-		<script>
-			let $dot = null;
-			let $img = null;
-			let $header = null;
-			let items = null;
-			let itemsArr = null;
-			let winH = null;
-			let prevWinH = null;
-			let imgH = null;
-			let prevImgH = null;
-			let observer = null;
-			let thresholds = null;
-			let rMargin = null;
+      /* ── Color: Accent ── */
+      --color-accent-primary: var(--base-terracotta);
+      --color-accent-gold: var(--base-gold);
+      --color-accent-info: var(--base-sky);
 
-			function createObserver() {
-				let options = {
-					root: null,
-					rootMargin: rMargin,
-					threshold: thresholds
-				};
+      /* ── Color: Tiles ── */
+      --color-tile-1: var(--base-terracotta);
+      --color-tile-2: var(--base-gold);
+      --color-tile-3: var(--base-rose);
+      --color-tile-4: var(--base-sage);
+      --color-tile-5: var(--base-sky);
+      --color-tile-6: var(--base-mauve);
 
-				observer = new IntersectionObserver(intersectionHandler, options);
-				itemsArr.map((item) => {
-					observer.observe(item);
-				});
-			}
+      /* ── Color: Panels ── */
+      --color-panel-1: var(--base-gray-90);
+      --color-panel-2: var(--base-gray-85);
+      --color-panel-3: var(--base-gray-80);
+      --color-panel-4: var(--base-gray-75);
 
-			function destroyObserver() {
-				if(observer) {
-					itemsArr.map((item) => {
-						observer.unobserve(item);
-					});
-					observer = null;
-				}
-			}
+      /* ── Color: Fragment Divider ── */
+      --color-frag-1: var(--color-tile-1);
+      --color-frag-2: var(--color-tile-2);
+      --color-frag-3: var(--color-tile-3);
+      --color-frag-4: var(--color-tile-4);
+      --color-frag-5: var(--color-tile-5);
+      --color-frag-6: var(--color-tile-1);
+      --color-frag-7: var(--color-tile-6);
 
-			function buildThresholdList() {
-				thresholds = [];
-				let numSteps = 20;
+      /* ── Color: Cursor / UI ── */
+      --color-cursor-ring: var(--base-gold);
+      --color-hairline: var(--base-sky-op-20);
 
-				for (let i=1.0; i<=numSteps; i++) {
-					let ratio = i/numSteps;
-					thresholds.push(ratio);
-				}
+      /* ── Spacing Scale ── */
+      --space-1: var(--base-xxs);
+      --space-2: var(--base-xs);
+      --space-3: var(--base-sm);
+      --space-4: var(--base-md);
+      --space-5: var(--base-xl);
+      --space-6: var(--base-lg);
+      --space-7: var(--base-xxl);
 
-				thresholds.push(0);
-				return thresholds;
-			}
+      /* ── Spacing: Contextual (responsive — overridden at 901px) ── */
+      --gap-xxs: var(--base-xxs);
+      --gap-xs: var(--base-xs);
+      --menu-height: 10rem;
+      --space-section-x-collapsed: var(--space-3);
+      --space-section-x: var(--space-3);
+      --space-section-y: var(--space-5);
+      --space-nav-x: var(--space-3);
+      --space-nav-y: var(--space-3);
+      --size-section-rule: 120px;
 
-			function intersectionHandler(entries, observer) {
-				entries.forEach((entry) => {
-					const ratio = 1 - entry.intersectionRatio;
-					const angle = `${-45 * entry.intersectionRatio}deg`;
 
-					entry.target.style.setProperty('--ratio', ratio);
-					entry.target.style.setProperty('--angle', angle);
-				});
-			}
-			
-			function calculateLogic() {
-				imgH = $img.offsetWidth;
-				winH = window.innerHeight;
 
-				if(prevImgH === imgH && prevWinH === winH) {
-					return;
-				}
+      /* ═══════════════════════════════════════════════════════════
+         TYPOGRAPHY TOKENS
+         font: font-weight font-size / line-height font-family
+      ═══════════════════════════════════════════════════════════ */
+      /* Label (IBM Plex Mono) - small, tracked text */
+      --typography-label-1: 400 0.9rem / 1rem "IBM Plex Mono";
+      --typography-label-2: 400 1.2rem / 2rem "IBM Plex Mono";
+      --typography-label-3: 400 1.5rem / 2rem "IBM Plex Mono";
 
-				$header.removeEventListener('transitionend', calculateLogic, false);
-				setTimeout(function(){
-					prevImgH = imgH;
-					prevWinH = winH;
-					prevScrollY = window.scrollY;
-					const rm = winH - imgH;
-					if(imgH < 300) {
-						rMargin = `120px 0px -${rm}px 0px`;
-					} else {
-						rMargin = `250px 0px -${rm}px 0px`;
-					}
+      /* Body (IBM Plex Sans) - long text */
+      --typography-body-1: 300 1.2rem / 2rem "IBM Plex Sans";
+      --typography-body-2: 300 1.6rem / 3rem "IBM Plex Sans";
+      --typography-body-3: 300 2rem / 3rem "IBM Plex Sans";
 
-					if(observer) {
-						destroyObserver();
-					}
-					createObserver();
-				}, 250);
-			}
+      /* Display (Playfair Display) - titles */
+      --typography-display-1: 400 1.6rem / 2rem "Playfair Display";
+      --typography-display-2: 400 2rem / 3rem "Playfair Display";
+      --typography-display-3: 700 2.8rem / 3rem "Playfair Display";
+      --typography-display-4: 900 3.6rem / 4rem "Playfair Display";
 
-			function endPreload() {
-				$dot.classList.remove('preloading');
-				setTimeout(function(){
-					document.body.classList.add('preloaded');
-					$header = document.querySelector("body.preloaded header");
-					$header.addEventListener('transitionend', calculateLogic, false);
-				}, 50);
-			}
+      /* ── Borders ── */
+      --border-thin: var(--base-border-thin);
+      --border-accent: var(--base-border-accent);
 
-			function simulatePreload() {
-				$dot.classList.add('preloading');
-				$dot.addEventListener("animationend", endPreload, false);
-				window.addEventListener('resize', calculateLogic, false);
-			}
+      /* ── Effects ── */
+      --blur-nav: blur(12px);
+      --stroke-svg: var(--base-stroke-thin);
+      --stroke-cursor: var(--base-stroke-cursor);
 
-			window.addEventListener('DOMContentLoaded', (e) => {
-				// cache elements:
-				items = document.querySelectorAll("header h1, header p, section h2, section li");
-				itemsArr = Array.prototype.slice.call(items);
-				$dot = document.querySelector(".dot");
-				$img = document.querySelector(".dot img");
-				thresholds = buildThresholdList();
+      /* ── Z-Index ── */
+      --z-hairline: 9997;
+      --z-cursor: 9998;
+      --z-nav: 100;
+      --z-hero-text: 2;
+      --z-coord: 3;
 
-				simulatePreload();			
-			});
-		</script>
-	</head>
+      /* ── Dimensions ── */
+      --size-cursor-ring: 48px;
+      --size-frag-divider-h: 4px;
+      --size-section-max: var(--base-layout-xxl);
+
+      /* ── Viewport Heights ── */
+      --vh-hero-mobile: var(--base-vh-40);
+      --vh-hero-tablet: var(--base-vh-60);
+      --vh-hero-desktop: var(--base-vh-90);
+      --vh-full: var(--base-vh-100);
+
+      /* ── Max Widths ── */
+      --mw-hero-sub: 38ch;
+      --mw-metric-label: 30ch;
+      --mw-project-body: 46ch;
+      --mw-labs-intro: 62ch;
+      --mw-lab-body: 50ch;
+      --mw-clients: 120ch;
+      --mw-projects-title: 18ch;
+      --mw-labs-title: 22ch;
+      --mw-projects-intro: var(--base-layout-xl);
+
+      /* ── Layout ── */
+      --layout-frag-cols: 3fr 1fr 2fr 4fr 1fr 2fr 3fr;
+    }
+
+    /* ── Responsive Semantic Overrides ── */
+    @media (min-width: 580px) {
+      :root {
+        --space-section-x-collapsed: var(--space-4);
+        --space-section-x: var(--space-4);
+        --space-section-y: var(--space-6);
+        --mw-metric-label: 22ch;
+      }
+    }
+
+    @media (min-width: 900px) {
+      :root {
+        --menu-height: 7rem;
+        --space-nav-x: var(--space-4);
+        --space-section-x-collapsed: 0;
+        --space-section-x: var(--space-5);
+        --space-section-y: var(--space-7);
+        --typography-display-1: 400 2rem / 3rem "Playfair Display";
+        --typography-display-2: 400 2.8rem / 3rem "Playfair Display";
+        --typography-display-3: 700 3.6rem / 4rem "Playfair Display";
+        --typography-display-4: 900 5.6rem / 6rem "Playfair Display";
+        --mw-metric-label: 35ch;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      :root {
+        --mw-metric-label: 22ch;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+   3. COMPONENT STYLES  —  Semantic tokens only, no raw values
+   ═══════════════════════════════════════════════════════════ */
+
+    /* FONTS */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400 900;
+      font-display: swap;
+      src: url('fonts/playfair-roman.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/playfair-italic.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Mono';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/ibm-plex-mono-400.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Mono';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('fonts/ibm-plex-mono-500.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 300;
+      font-display: swap;
+      src: url('fonts/ibm-plex-sans-300.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/ibm-plex-sans-400.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/ibm-plex-sans-400-italic.woff') format('woff');
+    }
+
+    html {
+      font-size: 62.5%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--color-bg-nav);
+      color: var(--color-text-primary);
+      font: var(--typography-body-2);
+      overflow-x: hidden;
+      cursor: var(--base-cursor-svg);
+    }
+
+    a,
+    button,
+    [role="button"],
+    label,
+    select,
+    summary,
+    [tabindex] {
+      cursor: var(--base-cursor-svg);
+    }
+
+    a:hover,
+    button:hover,
+    [role="button"]:hover,
+    label:hover,
+    select:hover,
+    summary:hover,
+    [tabindex]:hover {
+      cursor: var(--base-cursor-svg-hover);
+    }
+
+    /* ── CURSOR ── */
+    .cursor-ring {
+      position: fixed;
+      width: var(--size-cursor-ring);
+      height: var(--size-cursor-ring);
+      pointer-events: none;
+      z-index: var(--z-cursor);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease, transform var(--base-duration-fast) ease;
+      will-change: transform, left, top, opacity;
+    }
+
+    .cursor-ring.is-hovering {
+      transform: translate(-50%, -50%) scale(1.6);
+    }
+
+    .cursor-ring svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .cursor-ring polygon {
+      fill: none;
+      stroke: var(--color-cursor-ring);
+      stroke-width: var(--stroke-cursor);
+    }
+
+    .cursor-hairline {
+      position: fixed;
+      pointer-events: none;
+      z-index: var(--z-hairline);
+      opacity: 0;
+      transition: opacity var(--base-duration-fast) ease;
+      background: var(--color-hairline);
+    }
+
+    .cursor-hairline-x {
+      inset-inline-start: 0;
+      width: 100vw;
+      height: var(--border-thin);
+      transform: translateY(-1px);
+      will-change: transform, top;
+    }
+
+    .cursor-hairline-y {
+      inset-block-start: 0;
+      width: var(--border-thin);
+      height: var(--vh-full);
+      transform: translateX(-1px);
+      will-change: transform, left;
+    }
+
+    .cursor-targeting .cursor-hairline {
+      opacity: 1;
+    }
+
+    /* ── NAV ── */
+    .main-nav {
+      position: fixed;
+      display: flex;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: var(--z-nav);
+      background: var(--color-bg-nav);
+      min-height: var(--menu-height);
+    }
+
+    /* blur on a child for mobile browsers to extend its color to menu bar */
+    .main-nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      backdrop-filter: var(--blur-nav);
+      z-index: -1;
+    }
+
+    .main-nav::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: var(--border-thin);
+      background: var(--color-border-main);
+    }
+
+    .nav-container {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: var(--space-nav-y);
+      padding-inline: var(--space-nav-x);
+      max-width: var(--size-section-max);
+      margin-inline: auto;
+      flex-wrap: wrap;
+      column-gap: var(--space-1);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font: var(--typography-label-3);
+      color: var(--color-accent-gold);
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .nav-logo span {
+      color: var(--color-text-subtle);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-2);
+      list-style: none;
+      padding-inline-start: 3rem;
+    }
+
+    .nav-links a {
+      font: var(--typography-label-1);
+      text-transform: uppercase;
+      color: var(--color-text-subtle);
+      text-decoration: none;
+      transition: color var(--base-duration-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-text-primary);
+    }
+
+    :focus-visible {
+      outline: var(--border-thin) dotted var(--color-accent-primary);
+      outline-offset: 4px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      background: var(--color-bg-hero);
+      min-height: auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: var(--size-section-max);
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-block-start: calc(var(--menu-height) + var(--space-section-y));
+      padding-inline: var(--space-section-x);
+      position: relative;
+      z-index: var(--z-hero-text);
+    }
+
+    .hero-tag {
+      font: var(--typography-label-2);
+      color: var(--color-accent-primary);
+      margin-block-end: var(--space-3);
+      opacity: 0;
+      animation: fadeUp var(--base-duration-slow) var(--base-delay-1) forwards;
+    }
+
+    h1.hero-name {
+      font: var(--typography-display-4);
+      opacity: 0;
+      animation: fadeUp var(--base-duration-slow) var(--base-delay-2) forwards;
+    }
+
+    h1.hero-name em {
+      display: block;
+      font-style: italic;
+      color: var(--color-accent-gold);
+    }
+
+    h1.hero-name abbr {
+      display: inline-block;
+    }
+
+    .hero-sub {
+      font: var(--typography-body-2);
+      font-style: italic;
+      color: var(--color-text-muted);
+      max-width: var(--mw-hero-sub);
+      margin-block-start: var(--space-3);
+      opacity: 0;
+      animation: fadeUp var(--base-duration-slow) var(--base-delay-3) forwards;
+    }
+
+    /* Voronoi mosaic panel */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 380 / 344;
+      align-self: end;
+    }
+
+    #voronoiSvg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #voronoiSvg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #voronoiSvg path.vcell {
+      stroke-width: 1;
+      stroke-linejoin: round;
+    }
+
+    #voronoiSvg path.voutline {
+      fill: none;
+      stroke-linejoin: round;
+    }
+
+    .hero-coord {
+      position: absolute;
+      inset-block-end: var(--space-3);
+      inset-inline-start: var(--space-3);
+      font: var(--typography-label-2);
+      color: var(--color-accent-info);
+      z-index: var(--z-coord);
+      pointer-events: auto;
+      opacity: 0;
+      animation: fadeUp var(--base-duration-slow) var(--base-delay-1) forwards;
+    }
+
+    .hero-coord-link {
+      text-decoration: none;
+      color: var(--color-accent-info);
+      display: inline-block;
+    }
+
+    .hero-coord-link:visited,
+    .hero-coord-link:hover,
+    .hero-coord-link:active {
+      color: var(--color-accent-info);
+    }
+
+    .hero-link {
+      position: relative;
+      display: inline-block;
+      margin-block-start: var(--space-2);
+      font: var(--typography-label-3);
+      color: var(--color-accent-gold);
+      text-underline-offset: 0.8rem;
+      animation: heartbeat 1s ease-in-out infinite;
+    }
+
+    .hero-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: var(--border-thin);
+      background: currentColor;
+    }
+
+    .hero-link:hover {
+      color: var(--color-text-muted);
+      animation: none;
+    }
+
+
+    /* ── FRAGMENT DIVIDER ── */
+    .fragment-divider {
+      width: 100%;
+      height: var(--size-frag-divider-h);
+      display: grid;
+      grid-template-columns: var(--layout-frag-cols);
+      margin-block-start: 6px;
+    }
+
+    .fragment-divider-hero {
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline: 0;
+    }
+
+    .frag-1 {
+      background: var(--color-frag-1);
+    }
+
+    .frag-2 {
+      background: var(--color-frag-2);
+    }
+
+    .frag-3 {
+      background: var(--color-frag-3);
+    }
+
+    .frag-4 {
+      background: var(--color-frag-4);
+    }
+
+    .frag-5 {
+      background: var(--color-frag-5);
+    }
+
+    .frag-6 {
+      background: var(--color-frag-6);
+    }
+
+    .frag-7 {
+      background: var(--color-frag-7);
+    }
+
+    @keyframes heartbeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: var(--base-translate-fade-from);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes tileIn {
+      from {
+        opacity: 0;
+        transform: var(--base-scale-tile-from);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: var(--base-translate-reveal-from);
+      transition:
+        opacity 0.85s var(--base-ease-spring),
+        transform 0.85s var(--base-ease-spring);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.12s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.24s;
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════
+   4. BREAKPOINTS  —  Layout rules only, no raw values
+   ═══════════════════════════════════════════════════════════ */
+    @media (min-width: 580px) {
+      footer {
+        padding-block: var(--space-3);
+      }
+    }
+
+    @media (min-width: 901px) {
+      .nav-links {
+        flex-wrap: nowrap;
+        gap: 0;
+      }
+
+      .nav-logo {
+        font: var(--typography-label-3);
+      }
+
+      .nav-links {
+        gap: var(--space-3);
+      }
+
+      #hero {
+        min-height: var(--vh-full);
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr 1fr;
+        min-height: var(--vh-full);
+      }
+
+      .hero-left {
+        padding-inline: var(--space-5) var(--space-4);
+      }
+
+      .hero-coord {
+        inset-inline-start: var(--space-5);
+      }
+    }
+
+    @media (min-width: 2200px) {
+      .nav-container {
+        padding-inline: 0;
+      }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: var(--base-duration-a11y) !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: var(--base-duration-a11y) !important;
+        scroll-behavior: auto !important;
+      }
+
+      .cursor-ring,
+      .cursor-hairline {
+        display: none !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .hero-tag,
+      h1.hero-name,
+      .hero-sub,
+      .hero-metrics,
+      .hero-coord {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
 
 <body>
-	<div id="wrapper">
-		<header>
-			<div class="image">
-				<span class="triangle">
-					<span class="dot"><img src="avatar.jpg" alt="animation"></span>
-				</span>
-			</div>
-			<div class="content">
-				<h1>Sergi Meseguer</h1>
-				<p>Enthusiast developer who codes front and back end solutions, helping agencies build digital products for clients from different sectors.</p>
-			</div>
-		</header>
-		
-		<section>
-			<h2>Client work:</h2>
-			<ul>
-				<li>Front-end at <a href="http://www.windowsphone.com/es-es/store/app/aireuropa/13bab62b-a2c1-4065-b63a-6606d7fe1d90">Air Europa</a>'s Windows Phone app for <a href="http://hanzo.es/">hanzo</a></li>
-				<li>Full front-end <a href="http://www.clubatleticodemadrid.com">Atlético de Madrid</a> for <a href="http://www.quoco.com">quoco</a></li>
-				<li>Mobile optimizations and sliders <a href="http://www.vogue.es">Vogue</a> for <a href="http://hanzo.es/">hanzo</a></li>
-				<li>Front-end <a href="http://www.gincollege.com">Gin College</a> for <a href="http://pelonio.co.uk">Pelonio UK</a></li>
-				<li>Intranets or old projects for Virgin, Mapfre, Pull&Bear, National Geographic Spain, RBA, MTV Spain and banks like BBVA, Santander or Standard Chartered.</li>
-			</ul>
-		</section>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true">
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <polygon id="voronoiPoly" points="24,2 41,7 46,24 39,41 24,46 7,41 2,24 9,7" />
+    </svg>
+  </div>
+  <div class="cursor-hairline cursor-hairline-x" id="cursorHairlineX"></div>
+  <div class="cursor-hairline cursor-hairline-y" id="cursorHairlineY"></div>
 
-		<section>
-			<h2>Skills:</h2>
-			<ul>
-				<li>HTML, mobile first CSS, Sass/Compass, plain vanilla JavaScript, ES6, Ajax, Zepto/jQuery</li>
-				<li>EmberJS, Backbone/Marionette, Angular, React, VueJS, custom made frameworks</li>
-				<li>Jest, Jasmine, Cypress, Selenium</li>
-				<li>GruntJS, PhantomJS/CasperJS, BackstopJS</li>
-				<li>Git, git-flow and custom flows</li>
-				<li>PHP, Node, MySQL, Wordpress (custom as CMS and plugins), Apache/Nginx</li>
-				<li>Arduino C++, basic electronics and PCB design (EasyEDA, KiCad, Eagle)</li>
-			</ul>
-		</section>
+  <!-- NAV -->
+  <nav class="main-nav" aria-label="Main menu">
+    <div class="nav-container">
+      <a class="nav-logo" href="https://sergimeseguer.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <polygon points="10,2 22,7 20,21 4,19 2,10" stroke="#f0d399" stroke-width="1" fill="none" />
+          <rect x="10" y="10" width="4" height="4" fill="#c9826b" />
+        </svg>
+        SERGI MESEGUER <span>/ zigotica</span></a>
+    </div>
+  </nav>
 
-		<section>
-			<h2>Side projects:</h2>
-			<ul>
-				<li>Own designed <a href="https://github.com/zigotica/mechanical-keyboards">mechanical keyboards</a>. Currently includes a 12 keys micropad with 2 rotary encoders, and a 34 keys split keyboard.</li>
-				<li><a href="https://github.com/zigotica/json-based-conditions-and-rules-logic-evaluator">JSON based conditions and rules logic evaluator</a></li>
-				<li><a href="https://github.com/zigotica/active-app-qmk-layer-updater">active app qmk layer updater</a> node script that checks the current active app running in your OS and sends the target layer index to a QMK keyboard over raw hid, so you can change layers programmatically.</li>
-				<li><a href="http://zigotica.github.io/zwipeJS/">zwipeJS</a> tiny jQuery slider with hardware accelerated CSS transitions.</li>
-				<li><a href="https://github.com/zigotica/tumblr-full-backup">tumblr-full-backup</a> exports posts, images and likes from a tumblr blog to markdown.</li>
-				<li><a href="https://github.com/zigotica/EmbryoJS">embryoJS</a> mini library to replace jQuery with minimal lines of code. Inspired by Zepto.js, but quite smaller in scope and size.</li>
-				<li><a href="https://www.sergimeseguer.com/">Sergi Meseguer</a> photography-related website.</li>
-			</ul>
-		</section>
+  <!-- HERO -->
+  <main>
+    <header id="hero">
+      <div class="hero-container">
+        <div class="hero-left">
+          <p class="hero-tag">Lead Engineer · Barcelona · Remote</p>
+          <h1 class="hero-name">
+            Sergi<br />Meseguer
+          </h1>
+          <p class="hero-sub">
+            zigotica has been my handle for<br />
+            over twenty years.<br />
+            <a class="hero-link" href="https://sergimeseguer.com">Time to own my name</a>.
+          </p>
+        </div>
 
-		<section>
-			<h2>Find me at:</h2>
-			<ul>
-				<li><a href="http://twitter.com/zigotica">twitter</a></li>
-				<li><a href="https://github.com/zigotica">github</a></li>
-				<li><a href="http://zigotica.tumblr.com/">tumblr</a></li>
-				<li><a href="http://www.linkedin.com/in/sergimeseguer">linkedin</a></li>
-			</ul>
-		</section>
+        <div class="hero-right">
+          <svg id="voronoiSvg"></svg>
+        </div>
 
-		<footer><small>Contents and image © 2004 - 2021, Sergi Meseguer. All rights reserved.</small></footer>
-	</div>
+        <a class="hero-coord hero-coord-link" href="https://sergimeseguer.com">41.3874, 2.1686 · BCN</a>
+      </div>
+      <div class="fragment-divider fragment-divider-hero" role="separator" aria-hidden="true">
+        <div class="frag-1"></div>
+        <div class="frag-2"></div>
+        <div class="frag-3"></div>
+        <div class="frag-4"></div>
+        <div class="frag-5"></div>
+        <div class="frag-6"></div>
+        <div class="frag-7"></div>
+      </div>
+    </header>
+
+    <script>
+      const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      const isFirefox = typeof navigator !== "undefined" && /Firefox/i.test(navigator.userAgent);
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+      function easeInOut(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      }
+
+      // ── Cursor ──
+      const ring = document.getElementById("cursorRing");
+      const poly = document.getElementById("voronoiPoly");
+      const hairlineX = document.getElementById("cursorHairlineX");
+      const hairlineY = document.getElementById("cursorHairlineY");
+      if (isTouchDevice || !isFirefox) {
+        ring.style.display = "none";
+        poly.style.display = "none";
+        hairlineX.style.display = "none";
+        hairlineY.style.display = "none";
+      } else {
+        const ffCursor = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'%3E%3Crect width='6' height='6' fill='%23c9826b'/%3E%3C/svg%3E\") 3 3, auto";
+        document.body.style.cursor = ffCursor;
+        document.querySelectorAll("a, button, [role=\"button\"]").forEach(el => {
+          el.style.cursor = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 6 6'%3E%3Crect width='10' height='10' fill='%23c9826b'/%3E%3C/svg%3E\") 3 3, auto";
+        });
+        const heroCoord = document.querySelector(".hero-coord");
+        let mx = 0,
+          my = 0,
+          rx = 0,
+          ry = 0;
+        let shapeIdx = 0,
+          morphT = 0;
+
+        // Generate a random polygon with n vertices around center 24,24 in 48x48 box
+        function randomShape(n) {
+          const cx = 24,
+            cy = 24,
+            r = 20;
+          const pts = [];
+          for (let i = 0; i < n; i++) {
+            const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+            const jitter = 0.55 + Math.random() * 0.45;
+            pts.push([
+              cx + Math.cos(angle) * r * jitter,
+              cy + Math.sin(angle) * r * jitter,
+            ]);
+          }
+          return pts;
+        }
+
+        // Resample polygon to exactly n points by linear interpolation along edges
+        function resample(poly, n) {
+          // Compute perimeter
+          const lens = poly.map((p, i) => {
+            const q = poly[(i + 1) % poly.length];
+            return Math.hypot(q[0] - p[0], q[1] - p[1]);
+          });
+          const total = lens.reduce((a, b) => a + b, 0);
+          const step = total / n;
+          const out = [];
+          let seg = 0,
+            segT = 0;
+          for (let i = 0; i < n; i++) {
+            let d = i * step;
+            // Walk along edges
+            let s = 0;
+            for (let j = 0; j < poly.length; j++) {
+              if (d <= lens[j] + 1e-9) {
+                s = j;
+                segT = d / (lens[j] || 1);
+                break;
+              }
+              d -= lens[j];
+            }
+            const a = poly[s],
+              b = poly[(s + 1) % poly.length];
+            out.push([lerp(a[0], b[0], segT), lerp(a[1], b[1], segT)]);
+          }
+          return out;
+        }
+
+        const MAX_PTS = 9; // common count for interpolation
+        let fromShape = resample(randomShape(8), MAX_PTS);
+        let toShape = resample(randomShape(5), MAX_PTS);
+
+        document.addEventListener("mousemove", (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          hairlineX.style.top = my + "px";
+          hairlineY.style.left = mx + "px";
+        });
+
+        function animRing() {
+          rx += (mx - rx) * 0.12;
+          ry += (my - ry) * 0.12;
+          ring.style.left = rx + "px";
+          ring.style.top = ry + "px";
+          morphT += 0.007;
+          if (morphT >= 1) {
+            morphT = 0;
+            fromShape = toShape;
+            const nextN = 3 + Math.floor(Math.random() * 7); // 3 to 9
+            toShape = resample(randomShape(nextN), MAX_PTS);
+          }
+          const et = easeInOut(morphT);
+          const pts = fromShape.map(
+            (p, i) =>
+              lerp(p[0], toShape[i][0], et).toFixed(2) +
+              "," +
+              lerp(p[1], toShape[i][1], et).toFixed(2),
+          );
+          poly.setAttribute("points", pts.join(" "));
+          requestAnimationFrame(animRing);
+        }
+        animRing();
+
+        document.querySelectorAll("a, button").forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            ring.style.opacity = "0.5";
+            ring.style.transform = "translate(-50%,-50%) scale(1.4)";
+          });
+          el.addEventListener("mouseleave", () => {
+            ring.style.opacity = "1";
+            ring.style.transform = "translate(-50%,-50%) scale(1)";
+          });
+        });
+
+        if (heroCoord) {
+          heroCoord.addEventListener("mouseenter", () => {
+            document.body.classList.add("cursor-targeting");
+          });
+          heroCoord.addEventListener("mouseleave", () => {
+            document.body.classList.remove("cursor-targeting");
+          });
+        }
+
+      }
+
+      // ── Voronoi mosaic (SVG, throttled) ──
+      const vSvg = document.getElementById("voronoiSvg");
+      const tiles = ["color-tile-1", "color-tile-2", "color-tile-3", "color-tile-4", "color-tile-5", "color-tile-6"];
+      const vPalette = tiles.map((t) =>
+        getComputedStyle(document.documentElement).getPropertyValue(`--${t}`).trim(),
+      );
+
+      const STEP = 6;
+      const MORPH_FRAMES = 1200;
+      let vW, vH;
+      let vShapes = [];
+      let voronoiStarted = false;
+
+      // x: % position across mosaic (0 = left-aligned, 100 = right-aligned).
+      // y: % of mosaic height from bottom edge (0 = flush to bottom, 100 = flush to top)
+      // scale: size multiplier (1 = no change)
+      // z: stacking order — higher number renders on top (default 0)
+      // n: number of voronoi cells — fewer = bigger cells, more = smaller cells
+      const SHAPES = [
+        // left front
+        {vbW: 122.4558, vbH: 249.0710, x: 0, y: 0, z: 5, n: 120, scale: 0.8, d: "M 64.2033,0.0007 C 64.0211,0.0219 64.1330,0.3697 64.3634,0.8269 C 64.8968,0.3465 64.9708,0.0007 64.2228,0.0007 C 64.2168,0.0007 64.2091,0.0000 64.2033,0.0007 M 64.3635,0.8269 C 63.1543,1.9157 59.5864,3.6941 57.8908,3.6941 C 54.1732,3.6941 46.2150,7.9500 42.0588,10.0280 C 27.1853,17.4648 16.6296,12.4426 10.3986,31.1355 C 3.5708,51.6189 10.2734,64.6584 17.2580,78.6276 C 20.3885,84.8887 19.7770,88.7728 15.6740,92.8757 C 14.7826,93.7672 19.2975,97.5519 19.3693,97.6237 C 23.2848,101.5392 23.3019,106.3063 26.7561,109.7605 C 28.2950,111.2994 18.5759,135.8839 17.2580,137.2019 C 15.1582,139.3017 16.1007,144.6912 14.0920,146.6999 C 12.2232,148.5687 12.9474,154.1765 10.9260,156.1980 C 0.0000,167.1240 18.5557,196.7854 22.5354,204.7448 C 24.8961,209.4663 21.7271,236.4809 21.1799,249.0710 L 100.4143,249.0710 C 100.0441,232.1445 99.6516,206.7097 103.2717,199.4694 C 103.3806,199.2516 112.6390,190.1021 114.3537,188.3874 C 122.4558,180.2853 115.8458,145.5533 109.0764,138.7839 C 106.9844,136.6919 106.3475,132.7970 104.8557,129.8132 C 104.8246,129.7510 104.8201,129.7097 104.8323,129.6901 C 104.9331,129.5704 105.9554,130.3405 106.4377,130.3405 L 106.4397,130.3405 L 106.4417,130.3405 L 106.4417,130.3385 L 106.4417,130.3365 L 106.4417,130.3345 C 106.4417,130.3337 106.4419,130.3295 106.4417,130.3285 C 106.4091,130.1824 105.4546,128.8296 105.3831,128.7582 C 104.2810,127.6561 105.4746,120.0382 105.9105,118.7309 C 106.6300,116.5722 104.3914,109.6972 105.9105,108.1781 C 108.3497,105.7389 109.3999,100.7895 113.8265,100.7895 C 114.9625,100.7895 107.1878,88.9575 110.6585,85.4867 C 118.7997,77.3456 120.4022,35.5996 111.7152,26.9125 C 109.1324,24.3298 105.9737,21.7003 103.2718,18.9985 C 100.3855,16.1122 87.8568,16.7768 83.7464,12.6664 C 79.5536,8.4736 68.6902,8.9368 65.8050,3.1664 C 65.7847,3.1258 64.8296,1.7510 64.3636,0.8266 M 26.4613,34.0746 C 27.6118,34.1370 28.7990,34.5536 29.9222,35.3559 C 33.6345,34.6748 42.5920,38.0003 47.3363,42.7446 C 57.6923,53.1006 38.3587,73.8705 35.1996,70.7113 C 27.8987,63.4105 19.8968,56.0473 19.8968,42.2172 C 19.8968,36.8879 23.0096,33.8873 26.4613,34.0746 M 103.1390,36.6196 C 104.4513,36.5969 105.7385,36.8539 106.9652,37.4672 C 113.3201,40.6446 103.8275,71.7377 101.6878,73.8774 C 97.9663,77.5989 77.5309,62.5923 83.7464,51.7153 C 83.5186,50.6320 93.9528,36.7787 103.1390,36.6196 M 67.6546,89.8598 C 76.5907,89.4937 88.6066,104.9019 78.4710,115.0375 C 76.6946,116.8139 74.8117,120.8082 73.1937,122.4262 C 68.6785,126.9414 47.7491,113.5944 52.6136,96.5688 C 51.7399,94.4032 60.7110,94.2741 63.1663,91.8188 C 64.4498,90.5353 65.9998,89.9276 67.6546,89.8598 M 29.9496,147.7465 C 31.7864,147.7485 33.8779,148.0166 35.1996,149.3383 C 37.3115,151.4503 41.7813,151.6974 44.1703,154.0863 C 58.2702,168.1862 20.9515,192.3234 20.9515,160.4184 C 20.9515,153.4325 20.6802,152.5103 26.2288,147.7543 C 26.5305,148.0093 28.1127,147.7453 29.9496,147.7463 M 100.6527,148.7991 C 107.5656,149.1596 104.7005,175.2712 95.3558,179.9436 C 93.0987,181.0721 74.9684,169.2536 87.9691,154.0862 C 87.5564,152.0319 94.0767,153.2539 95.8831,151.4475 C 97.6425,149.6881 99.1158,148.8789 100.3167,148.8010 C 100.4314,148.7940 100.5429,148.7930 100.6527,148.7990"},
+        // left:
+        {vbW: 472.3783, vbH: 592.1207, x: 3, y: 0, z: 3, n: 99, scale: 1.7, d: "M 226.1778,2.2320 L 226.1778,3.9625 C 218.3798,0.0000 214.2655,6.3900 210.3946,15.6363 C 203.2353,22.9411 192.1997,36.3702 189.4063,39.1637 C 173.4158,55.1542 125.4635,43.7120 120.1114,49.0641 C 113.0325,56.1429 125.7676,85.7085 125.7676,91.4899 C 125.7676,103.8918 123.4861,103.6698 117.2813,109.8746 C 112.7353,114.4206 122.9395,143.7766 122.9395,152.3004 C 122.9395,159.8866 117.7066,197.9816 118.6953,198.9703 C 119.3099,199.5848 119.9188,200.2084 120.5215,200.8414 C 120.6715,201.7686 120.8517,202.6986 121.0664,203.6344 C 137.6558,217.5856 153.6770,243.4154 156.6309,268.7984 C 157.6100,272.9225 157.3753,278.0530 156.7520,283.5309 C 156.6532,284.4604 156.4987,285.3776 156.3555,286.2984 C 154.7317,297.7641 151.2729,310.9467 149.3301,323.6402 C 148.3246,325.6863 147.1077,327.5365 145.5664,329.0777 C 121.7169,352.9273 81.2877,371.3658 62.1270,409.6871 C 55.8174,422.3062 62.9060,461.3763 69.1992,467.6695 C 69.2502,467.7205 71.2951,471.1253 73.5157,474.7359 C 64.2741,481.7733 54.1061,490.6247 45.7735,498.8199 C 32.7020,503.4777 22.6035,514.3523 15.7949,530.0504 C 13.1816,534.6960 10.8270,539.7426 8.7793,545.1715 C 5.3431,549.3654 3.8154,555.5882 3.5274,562.9586 C 1.5623,571.8562 0.3377,581.5123 0.0000,591.8785 L 387.3985,591.8785 L 387.3985,592.1207 L 467.7578,592.1207 C 467.2454,591.3929 466.8201,590.6925 466.4844,590.0211 C 466.0261,589.1046 465.5843,588.1960 465.1582,587.2965 C 472.3783,578.9460 466.4475,564.7855 455.0430,550.3355 C 454.9177,548.3719 454.8585,546.4357 454.8555,544.5211 C 453.2893,544.3983 451.6432,544.2974 449.9141,544.2203 C 441.6227,534.8754 431.4865,525.7370 421.5957,518.3063 C 421.6555,518.1258 421.7164,517.9446 421.7774,517.7633 C 440.5136,499.8670 449.5052,479.2379 448.9473,459.5934 C 461.4673,430.6955 427.0905,404.3830 416.1055,393.3980 C 408.6699,385.9625 416.7639,350.7149 412.1055,341.3980 C 410.5646,338.3162 409.0646,335.5087 407.5977,332.9391 C 406.1338,329.1294 403.8818,325.7735 401.0938,322.7340 C 387.1171,303.3289 374.8274,302.1200 354.1055,281.3980 C 353.9671,281.2597 353.8317,281.1163 353.6992,280.9703 C 353.0097,270.6046 354.3115,255.8335 352.0430,251.2965 C 350.7479,248.7063 344.1292,230.7238 343.9297,221.7984 C 355.0444,217.5800 370.7663,216.7373 372.1055,215.3980 C 373.4363,214.0672 373.8544,212.0962 373.6680,209.7125 C 374.0282,209.4572 374.3643,209.1764 374.6719,208.8688 C 377.7554,205.7853 364.7715,164.7598 364.7715,155.1285 C 364.7715,149.2893 367.8911,126.5727 365.3789,120.7340 C 365.1939,117.9954 364.7957,116.0882 364.1055,115.3980 C 358.1164,109.4089 341.0421,111.5626 331.8731,107.7789 C 331.2035,107.1013 330.8301,106.3885 330.8301,105.6324 C 330.8301,89.9399 330.1705,78.0713 328.9414,69.1363 C 330.6759,58.5759 330.9382,48.2308 324.1055,41.3980 C 319.8220,37.1145 297.2023,41.9465 292.1055,39.3980 C 265.0103,25.8515 236.5602,8.8626 226.1778,2.2320"},
+        // middle group
+        {vbW: 624.2865, vbH: 625.9554, x: 48, y: 0, z: 1, n: 160, scale: 1.2, d: "M 101.5555,0.0000 C 97.0162,0.0000 97.7536,3.4890 101.1840,8.5070 C 103.7475,3.4716 105.0226,0.0000 101.5555,0.0000 M 101.1840,8.5070 C 97.8185,15.1179 92.2314,24.4234 92.2314,32.1003 C 92.2314,53.1707 26.9628,70.8563 26.9628,118.3698 C 26.9628,162.2579 34.2567,138.6103 12.0442,162.5077 C 0.0000,175.4655 17.6387,242.3281 17.6387,256.8022 C 17.6387,259.9970 15.7488,274.8317 17.6387,276.8649 C 19.5035,278.8712 25.0979,276.8649 26.9628,278.8712 C 32.7596,285.1077 18.6274,374.3508 25.0979,395.2347 C 34.1516,424.4558 56.4933,474.8259 71.7184,507.5856 C 84.1221,534.2744 73.7628,594.0622 79.1777,603.8865 L 582.6787,625.9554 C 588.4874,607.2076 599.1461,578.4848 608.7861,557.7423 C 612.7162,549.2858 602.0653,398.0355 601.3268,397.2409 C 591.3254,386.4809 621.6522,381.3927 623.7047,379.1845 C 624.2865,378.5585 622.7374,278.7961 621.8398,276.8649 C 614.9372,262.0126 616.8979,266.8336 603.1917,266.8336 C 601.3268,266.8336 603.1917,262.8210 603.1917,260.8148 C 603.1917,238.4738 606.9021,206.6249 593.8676,192.6017 C 582.1621,180.0083 554.1277,181.9478 541.6526,168.5265 C 529.7530,155.7242 531.2335,129.2292 519.2748,116.3635 C 510.9428,107.3995 510.4747,187.1466 496.8970,172.5390 C 484.0387,158.7054 471.2430,150.9579 459.6006,138.4325 C 450.5954,128.7442 454.7918,107.1774 446.5469,98.3071 C 444.0434,95.6137 423.9063,158.2124 414.8450,148.4638 C 408.6083,141.7539 408.1536,125.2148 401.7912,118.3698 C 392.7780,108.6728 373.5081,110.0103 364.4949,100.3134 C 358.3611,93.7144 361.8854,77.4434 357.0356,72.2256 C 355.7636,70.8571 334.7169,121.4109 314.1448,110.3447 C 300.5607,103.0375 285.8464,87.5738 278.7132,72.2256 C 276.0158,66.4215 276.5070,44.1379 271.2540,44.1379 C 267.1415,44.1379 266.3236,71.5112 263.7947,74.2319 C 259.3822,78.9792 239.5521,114.2122 239.5521,92.2883 C 239.5521,91.5851 205.9397,64.1514 194.7964,52.1630 C 190.9930,48.0710 181.0222,4.7878 178.0131,8.0251 C 171.4314,15.1059 171.7128,50.9161 151.9056,72.2256 C 144.8182,79.8506 145.9520,48.9604 136.9871,44.1379 C 135.1853,43.1687 109.7640,21.0579 101.1840,8.5070 M 70.0357,133.1503 C 93.0462,133.6574 122.6395,155.8746 116.4741,162.5077 C 110.5843,168.8442 62.8157,163.9682 45.6109,174.5453 C 41.6293,142.6198 54.2917,132.8034 70.0357,133.1503 M 221.5049,149.1534 C 242.2965,149.8298 267.9394,168.0799 258.2002,178.5578 C 253.8782,183.2076 220.4087,180.5641 213.4446,180.5641 L 198.5261,180.5641 C 195.3248,156.4555 207.2790,148.6907 221.5049,149.1534 M 148.7187,159.7569 C 173.5263,159.2877 200.2269,180.5641 166.8242,180.5641 C 148.6938,180.5641 140.1651,190.7125 120.2037,184.5766 C 123.2480,166.2159 135.7242,160.0027 148.7187,159.7569 M 323.5090,208.0758 C 343.3631,207.3743 363.1209,218.1552 355.1708,226.7082 C 342.1860,240.6778 306.9022,234.2948 285.2146,240.4817 C 273.8819,260.4876 293.6900,215.7594 284.3077,240.7521 C 284.6071,240.6600 284.9098,240.5687 285.2146,240.4817 C 287.0835,237.1826 289.7986,232.1250 293.6318,224.7019 C 299.6486,213.0501 311.5965,208.4967 323.5090,208.0758 M 402.8475,218.9300 C 459.2482,215.4752 437.9896,274.0149 373.8190,224.7019 C 385.1472,221.1829 394.7903,219.4236 402.8475,218.9300 M 494.3000,260.8069 C 497.1648,260.8270 499.9275,261.4418 502.4914,262.8210 C 508.8544,266.2438 518.8644,277.9237 525.0259,282.3155 C 528.2099,281.4285 530.4637,280.8341 530.4637,280.8774 C 530.4637,284.9222 528.2823,284.6365 525.0259,282.3155 C 517.6168,284.3796 505.1701,288.0270 504.3563,288.9025 C 494.5046,299.5015 466.3996,295.2915 452.1413,290.9088 C 449.1878,289.7765 474.2475,260.6732 494.3000,260.8069 M 571.8504,268.1423 C 600.2589,268.3892 619.3751,308.2075 543.5175,284.8900 C 551.8786,272.3746 562.3808,268.0601 571.8504,268.1423"},
+        // middle tall
+        {vbW: 60.8750, vbH: 144.4766, x: 65, y: 0, z: 2, n: 150, scale: 0.69, d: "M 32.7121,0.0000 C 32.6974,0.0000 32.7811,0.2049 32.9348,0.5469 C 33.0193,0.2266 33.0029,0.0000 32.7121,0.0000 M 32.9348,0.5469 C 32.8056,1.0366 32.4387,1.7429 32.4387,2.1875 C 32.4387,3.6415 32.8496,7.2493 31.8899,8.2090 C 30.6215,9.4773 28.9266,10.8989 27.7863,12.0391 C 25.2109,14.6145 22.4913,15.4999 20.1242,13.1328 C 19.4414,12.4500 19.4605,11.0999 18.7570,10.3965 C 18.6839,10.3234 17.9804,9.4789 17.7395,9.1543 C 17.6857,9.7462 16.0207,12.3022 16.0207,14.2285 C 16.0207,17.5711 7.0134,20.4757 5.0754,24.3516 C 3.7401,27.0221 6.4170,35.8693 4.5266,37.7598 C 3.5633,38.7231 1.1217,38.7037 0.1496,39.6758 C 0.0000,39.8254 1.4311,61.4807 1.7902,61.8399 C 2.5728,62.6224 4.3291,59.9998 5.0754,60.7461 C 5.3490,61.0197 5.0752,61.8397 5.3488,62.1133 C 6.6428,63.4072 4.0558,78.3339 5.6223,79.9004 C 7.7442,82.0224 6.7502,87.5948 8.9055,89.7500 C 18.5896,99.4341 14.6353,130.9348 15.4719,144.4766 L 48.5813,143.9297 C 48.5813,132.1197 46.6672,120.2627 46.6672,108.9043 C 46.6672,108.0319 46.1120,103.9868 46.6672,103.4316 C 48.9632,101.1356 55.1496,73.9009 55.1496,68.1328 C 55.1496,64.2114 54.6027,60.1734 54.6027,56.0938 C 54.6027,55.7987 53.9016,54.6035 54.3274,54.1777 C 54.7834,53.7217 56.3342,54.3604 56.7902,53.9043 C 60.8750,49.8196 58.4328,43.1804 58.4328,38.0332 C 58.4328,36.3832 57.8770,30.6376 56.7902,29.5508 C 56.1005,28.8611 54.4296,29.3796 53.7805,28.7305 C 53.5846,28.4985 54.6951,24.9927 54.0539,24.3516 C 51.9651,22.2627 50.7394,9.5762 46.3938,9.5762 C 42.0603,9.5762 36.5456,7.9423 34.8996,4.6504 C 34.1512,3.1536 33.3240,1.4129 32.9348,0.5469 M 17.7395,9.1543 C 17.7465,9.0725 17.7242,9.0293 17.6614,9.0293 L 17.6594,9.0293 L 17.6594,9.0313 L 17.6594,9.0333 C 17.6634,9.0474 17.6924,9.0910 17.7395,9.1544 M 43.5285,22.2696 C 47.5541,22.1650 51.8664,24.1673 51.8664,29.0040 L 36.8156,25.9942 C 37.4395,23.7073 40.3975,22.3510 43.5285,22.2696 M 27.8391,24.6700 C 29.3302,24.7395 30.5227,25.4269 30.5227,26.5411 C 30.5227,26.7321 25.1620,28.9480 24.5031,29.2774 C 23.4072,29.8254 22.8694,30.1039 22.6281,30.2325 C 22.5689,30.2732 22.4711,30.3231 22.4563,30.3282 C 22.4613,30.3234 22.5073,30.2970 22.6281,30.2325 C 22.6498,30.2176 22.6655,30.2030 22.6711,30.1935 L 22.6731,30.1915 L 22.6731,30.1895 L 22.6731,30.1875 L 22.6731,30.1855 L 22.6731,30.1835 L 22.6711,30.1835 L 22.6711,30.1815 L 22.6691,30.1815 L 22.6671,30.1815 C 22.6294,30.1749 22.4654,30.2174 22.0402,30.3729 C 22.0402,26.1574 25.3539,24.5540 27.8390,24.6698 M 13.0363,29.1561 C 13.4531,29.1465 13.8193,29.2653 14.1046,29.5506 C 14.5861,30.0320 19.7574,32.9291 19.0304,33.6561 C 18.7437,33.9428 7.4896,36.1190 6.7160,36.1190 C 4.6905,35.6371 10.1186,29.2231 13.0363,29.1561"},
+        // right
+        {vbW: 426.1976, vbH: 454.9905, x: 99, y: 0, z: 4, n: 99, scale: 1.25, d: "M 176.1236,0.0042 C 172.0536,0.0000 161.0001,15.6411 160.0611,16.6175 C 151.9202,25.0830 120.7971,33.0634 119.6744,34.2308 C 103.0691,51.4979 138.4637,127.1369 120.9771,145.3206 C 103.8821,163.0969 76.2688,178.2635 55.8365,199.5101 C 34.9531,221.2258 55.5442,312.2576 42.8072,325.5023 C 36.8054,331.7433 31.6502,351.6334 27.7115,374.1253 C 22.5666,383.5862 18.7271,393.8760 18.7271,410.8909 C 18.7271,425.6181 0.0000,454.8909 14.7271,454.8909 C 22.5919,454.8909 32.0789,453.4036 42.0728,451.9105 C 42.1367,452.9515 42.1832,453.9792 42.2095,454.9905 L 345.0474,454.9905 C 344.8022,425.6794 341.3669,401.4443 341.1627,371.6136 C 340.2731,372.4873 339.1936,373.2231 338.0142,373.8733 C 338.3715,372.7429 338.9162,371.7018 339.7271,370.8909 C 339.8640,370.7540 339.9959,370.6173 340.1236,370.4808 C 340.4675,370.2792 340.8113,370.0788 341.1549,369.8812 C 341.1549,370.4609 341.1546,371.0381 341.1666,371.6136 C 341.1876,371.5926 341.2091,371.5723 341.2291,371.5511 C 342.4869,370.2933 344.1371,369.4908 346.0845,369.0569 C 360.1883,371.1047 372.2791,375.0566 385.0689,381.4515 C 390.3527,384.0934 395.4443,388.5082 399.5826,392.5023 C 405.7474,412.1754 407.3391,449.7589 408.6744,454.9905 L 417.2232,454.9905 C 424.6734,444.1266 426.1976,404.8230 419.3248,390.5296 C 408.4117,367.8335 389.3334,360.2044 370.4400,353.5159 C 367.8265,352.3798 365.1680,351.4373 362.4927,350.7073 C 345.7851,344.7101 330.1663,337.8730 321.6119,320.0823 C 305.0363,285.6098 320.8632,213.6345 294.2525,185.9632 C 272.5374,163.3825 245.1509,163.7747 229.1119,130.4183 C 224.0658,119.9239 229.1119,90.7438 229.1119,78.9378 C 229.1119,75.7446 236.0595,82.5492 238.2310,80.2913 C 239.7497,78.7121 230.3604,59.9138 229.1119,58.6155 C 223.6834,52.9707 234.5404,30.3912 229.1119,24.7464 C 224.5520,20.0048 207.6151,28.1345 203.0552,23.3929 C 195.2863,15.3143 184.7260,8.3969 176.9986,0.3616 C 176.7644,0.1181 176.4685,0.0046 176.1236,0.0042"},
+      ];
+
+      function vShuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+      // x0,y0: top-left of bounding box; w,h: dimensions of bounding box
+      function randSites(x0, y0, w, h, n) {
+        const pts = [];
+        const cols = Math.max(2, Math.round(Math.sqrt(n * w / h)));
+        const rows = Math.max(2, Math.round(Math.sqrt(n * h / w)));
+        // 1. Loose grid with jitter
+        for (let r = 0; r < rows; r++)
+          for (let cc = 0; cc < cols; cc++) {
+            pts.push([
+              x0 + ((cc + Math.random()) * w) / cols,
+              y0 + ((r + Math.random()) * h) / rows,
+            ]);
+          }
+        // 2. Fully random scatter
+        const scatter = Math.max(4, Math.round(n * 0.3));
+        for (let i = 0; i < scatter; i++)
+          pts.push([x0 + Math.random() * w, y0 + Math.random() * h]);
+        // 3. A few tight clusters
+        const numClusters = 1 + Math.floor(Math.random() * 3);
+        for (let k = 0; k < numClusters; k++) {
+          const cx = x0 + Math.random() * w, cy = y0 + Math.random() * h;
+          const clusterSize = 2 + Math.floor(Math.random() * 3);
+          for (let i = 0; i < clusterSize; i++) {
+            pts.push([
+              cx + (Math.random() - 0.5) * w * 0.15,
+              cy + (Math.random() - 0.5) * h * 0.15,
+            ]);
+          }
+        }
+        // Shuffle and trim to n
+        for (let i = pts.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [pts[i], pts[j]] = [pts[j], pts[i]];
+        }
+        return pts.slice(0, n);
+      }
+
+      function clipHalf(poly, ax, ay, cv) {
+        if (!poly.length) return poly;
+        const out = [];
+        for (let i = 0; i < poly.length; i++) {
+          const a = poly[i],
+            b = poly[(i + 1) % poly.length];
+          const da = ax * a[0] + ay * a[1] - cv,
+            db = ax * b[0] + ay * b[1] - cv;
+          if (da <= 0) out.push(a);
+          if ((da < 0 && db > 0) || (da > 0 && db < 0)) {
+            const t = da / (da - db);
+            out.push([a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])]);
+          }
+        }
+        return out;
+      }
+
+      function cellPath(i, pts, n, bbox) {
+        n = n || pts.length;
+        if (!pts || !pts[i]) return "";
+        const bx = bbox ? bbox.x : 0, by = bbox ? bbox.y : 0;
+        const bw = bbox ? bbox.w : vW, bh = bbox ? bbox.h : vH;
+        let cell = [
+          [bx, by],
+          [bx + bw, by],
+          [bx + bw, by + bh],
+          [bx, by + bh],
+        ];
+        for (let j = 0; j < n; j++) {
+          if (j === i) continue;
+          const mx = (pts[i][0] + pts[j][0]) / 2,
+            my = (pts[i][1] + pts[j][1]) / 2;
+          const ax = pts[j][0] - pts[i][0],
+            ay = pts[j][1] - pts[i][1];
+          cell = clipHalf(cell, ax, ay, ax * mx + ay * my);
+          if (!cell.length) break;
+        }
+        if (!cell.length) return "";
+        return (
+          "M" +
+          cell.map((p) => p[0].toFixed(1) + "," + p[1].toFixed(1)).join("L") +
+          "Z"
+        );
+      }
+
+      // Build a gold outline SVG filter
+      function makeOutlineFilter(ns, id) {
+        const f = document.createElementNS(ns, "filter");
+        f.setAttribute("id", id);
+        f.setAttribute("x", "-5%"); f.setAttribute("y", "-5%");
+        f.setAttribute("width", "110%"); f.setAttribute("height", "110%");
+        const dilate = document.createElementNS(ns, "feMorphology");
+        dilate.setAttribute("in", "SourceAlpha");
+        dilate.setAttribute("operator", "dilate");
+        dilate.setAttribute("radius", "2");
+        dilate.setAttribute("result", "dilated");
+        f.appendChild(dilate);
+        const xor = document.createElementNS(ns, "feComposite");
+        xor.setAttribute("in", "dilated"); xor.setAttribute("in2", "SourceAlpha");
+        xor.setAttribute("operator", "xor"); xor.setAttribute("result", "ring");
+        f.appendChild(xor);
+        const flood = document.createElementNS(ns, "feFlood");
+        flood.setAttribute("flood-color", "#f0d399");
+        flood.setAttribute("flood-opacity", "0.95");
+        flood.setAttribute("result", "outlineColor");
+        f.appendChild(flood);
+        const col = document.createElementNS(ns, "feComposite");
+        col.setAttribute("in", "outlineColor"); col.setAttribute("in2", "ring");
+        col.setAttribute("operator", "in");
+        f.appendChild(col);
+        return f;
+      }
+
+      function initVoronoi() {
+        const ns = "http://www.w3.org/2000/svg";
+        vW = vSvg.parentElement.offsetWidth;
+        vH = vSvg.parentElement.offsetHeight;
+        if (!vW || !vH) return false;
+        vSvg.setAttribute("viewBox", "0 0 " + vW + " " + vH);
+        vSvg.innerHTML = "";
+        vShapes = [];
+
+        const defs = document.createElementNS(ns, "defs");
+        const clip = document.createElementNS(ns, "clipPath");
+        clip.setAttribute("id", "heroVoronoiClip");
+        clip.setAttribute("clipPathUnits", "userSpaceOnUse");
+        const clipRect = document.createElementNS(ns, "path");
+        clipRect.setAttribute("d", "M0,0H" + vW + "V" + vH + "H0Z");
+        clip.appendChild(clipRect);
+        defs.appendChild(clip);
+
+        const slotW = vW / 3;
+        const slotH = vH;
+        const slotPad = slotW * 0.08;
+
+        function shapeTransform(si, shape) {
+          const availW = slotW - slotPad * 2;
+          const baseScale = Math.min(availW / shape.vbW, slotH / shape.vbH) * (shape.scale || 1);
+          const sw = shape.vbW * baseScale, sh = shape.vbH * baseScale;
+          const sx = (shape.x !== undefined ? (vW - sw) * shape.x / 100 : si * slotW + slotPad + (availW - sw) / 2);
+          const sy = vH - sh - vH * (shape.y || 0) / 100;
+          return "translate(" + sx.toFixed(2) + "," + sy.toFixed(2) + ") scale(" + baseScale.toFixed(4) + ")";
+        }
+
+        // Sort by z so higher z renders on top
+        const sorted = SHAPES
+          .map((shape, i) => ({shape, si: i}))
+          .sort((a, b) => (a.shape.z || 0) - (b.shape.z || 0));
+
+
+        // Build defs: mask + filter per shape
+        sorted.forEach(({shape, si}) => {
+          const transform = shapeTransform(si, shape);
+          const mask = document.createElementNS(ns, "mask");
+          mask.setAttribute("id", "heroMask" + si);
+          mask.setAttribute("maskUnits", "userSpaceOnUse");
+          mask.setAttribute("maskContentUnits", "userSpaceOnUse");
+          mask.setAttribute("mask-type", "alpha");
+          mask.setAttribute("x", "0"); mask.setAttribute("y", "0");
+          mask.setAttribute("width", String(vW)); mask.setAttribute("height", String(vH));
+          const maskPath = document.createElementNS(ns, "path");
+          maskPath.setAttribute("d", shape.d);
+          maskPath.setAttribute("fill", "white");
+          maskPath.setAttribute("transform", transform);
+          mask.appendChild(maskPath);
+          defs.appendChild(mask);
+          defs.appendChild(makeOutlineFilter(ns, "heroFilter" + si));
+        });
+        vSvg.appendChild(defs);
+
+        // Render in z-order: backdrop, cells, outline
+        sorted.forEach(({shape, si}) => {
+          const transform = shapeTransform(si, shape);
+          // Bounding box of rendered shape in panel space
+          const _availW = slotW - slotPad * 2;
+          const _bscale = Math.min(_availW / shape.vbW, slotH / shape.vbH) * (shape.scale || 1);
+          const _sw = shape.vbW * _bscale, _sh = shape.vbH * _bscale;
+          const _sx = (shape.x !== undefined ? (vW - _sw) * shape.x / 100 : si * slotW + slotPad + (_availW - _sw) / 2);
+          const _sy = vH - _sh - vH * (shape.y || 0) / 100;
+          const shapeBBox = {x: _sx, y: _sy, w: _sw, h: _sh};
+          const shapeNCount = Math.max(4, shape.n || 30);
+          const colors = vShuffle(
+            Array.from({length: shapeNCount}, (_, i) => vPalette[i % vPalette.length])
+          );
+
+          const backdrop = document.createElementNS(ns, "rect");
+          backdrop.setAttribute("x", "0"); backdrop.setAttribute("y", "0");
+          backdrop.setAttribute("width", String(vW)); backdrop.setAttribute("height", String(vH));
+          const zLevel = shape.z || 0;
+          const bgGrey = 14 + zLevel * 3;
+          backdrop.setAttribute("fill", `rgb(${bgGrey},${bgGrey - 1},${bgGrey - 3})`);
+          backdrop.setAttribute("mask", "url(#heroMask" + si + ")");
+          vSvg.appendChild(backdrop);
+
+          const paths = [];
+          for (let i = 0; i < shapeNCount; i++) {
+            const p = document.createElementNS(ns, "path");
+            p.setAttribute("class", "vcell");
+            p.setAttribute("fill", "transparent");
+            p.setAttribute("fill-opacity", "0");
+            p.setAttribute("stroke", "#e7ecf410");
+            p.setAttribute("stroke-width", "1");
+            p.setAttribute("clip-path", "url(#heroVoronoiClip)");
+            p.setAttribute("mask", "url(#heroMask" + si + ")");
+            vSvg.appendChild(p);
+            paths.push(p);
+          }
+
+          const outlinePath = document.createElementNS(ns, "path");
+          outlinePath.setAttribute("class", "voutline");
+          outlinePath.setAttribute("d", shape.d);
+          outlinePath.setAttribute("fill", "none");
+          outlinePath.setAttribute("stroke", "#f0d39975");
+          outlinePath.setAttribute("stroke-width", "1");
+          outlinePath.setAttribute("vector-effect", "non-scaling-stroke");
+          outlinePath.setAttribute("stroke-linejoin", "round");
+          outlinePath.setAttribute("transform", transform);
+          outlinePath.setAttribute("pointer-events", "none");
+          vSvg.appendChild(outlinePath);
+
+          const hitRef = outlinePath;
+
+          const sites = randSites(shapeBBox.x, shapeBBox.y, shapeBBox.w, shapeBBox.h, shapeNCount);
+          const targets = sites.map((s) => [
+            Math.max(shapeBBox.x, Math.min(shapeBBox.x + shapeBBox.w, s[0] + (Math.random() - 0.5) * shapeBBox.w * 0.18)),
+            Math.max(shapeBBox.y, Math.min(shapeBBox.y + shapeBBox.h, s[1] + (Math.random() - 0.5) * shapeBBox.h * 0.18)),
+          ]);
+          for (let i = 0; i < shapeNCount; i++) {
+            const pd = cellPath(i, sites, shapeNCount, shapeBBox);
+            if (pd) paths[i].setAttribute("d", pd);
+          }
+          // Store si so we can look up the mask path for hit-testing
+          const avgCellSide = Math.sqrt((shapeBBox.w * shapeBBox.h) / shapeNCount);
+          const influenceR = Math.max(40, avgCellSide * 1.5);
+          vShapes.push({si, n: shapeNCount, bbox: shapeBBox, influenceR, sites, targets, paths, colors, frame: 0, mouseX: -9999, mouseY: -9999, outlinePath: hitRef});
+        });
+
+        return true;
+      }
+
+      // INFLUENCE_R is now per-shape (vs.influenceR), computed from avg cell size
+      const PUSH_STRENGTH = 0.18;
+
+      const heroRight = document.querySelector(".hero-right");
+      if (!isTouchDevice) {
+        heroRight.addEventListener("mousemove", (e) => {
+          if (!vShapes.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          const rect = vSvg.getBoundingClientRect();
+          const mx = e.clientX - rect.left;
+          const my = e.clientY - rect.top;
+          // Hit-test in reverse z-order (topmost first); first hit wins.
+          // getScreenCTM().inverse() maps client coords into path local space for isPointInFill.
+          let activeIdx = -1;
+          for (let i = vShapes.length - 1; i >= 0; i--) {
+            const hitPath = vShapes[i].outlinePath;
+            if (!hitPath) continue;
+            try {
+              const ctm = hitPath.getScreenCTM();
+              if (!ctm) continue;
+              const inv = ctm.inverse();
+              const svgPt = vSvg.createSVGPoint();
+              svgPt.x = e.clientX;
+              svgPt.y = e.clientY;
+              const localPt = svgPt.matrixTransform(inv);
+              if (hitPath.isPointInFill(localPt)) {
+                activeIdx = i; break;
+              }
+            } catch (err) {continue;}
+          }
+          vShapes.forEach((vs, i) => {
+            vs.mouseX = (i === activeIdx) ? mx : -9999;
+            vs.mouseY = (i === activeIdx) ? my : -9999;
+          });
+        });
+        heroRight.addEventListener("mouseleave", () => {
+          vShapes.forEach((vs) => {vs.mouseX = -9999; vs.mouseY = -9999;});
+        });
+      }
+
+      function frameVoronoi() {
+        if (!voronoiStarted || !vShapes.length) return;
+        vShapes.forEach((vs) => {
+          vs.frame++;
+          if (vs.frame >= MORPH_FRAMES) {
+            vs.frame = 0;
+            vs.sites = vs.targets.map((s) => [...s]);
+            vs.targets = vs.sites.map((s) => [
+              Math.max(vs.bbox.x, Math.min(vs.bbox.x + vs.bbox.w, s[0] + (Math.random() - 0.5) * vs.bbox.w * 0.18)),
+              Math.max(vs.bbox.y, Math.min(vs.bbox.y + vs.bbox.h, s[1] + (Math.random() - 0.5) * vs.bbox.h * 0.18)),
+            ]);
+          }
+          if (vs.frame % STEP === 0) {
+            const et = easeInOut(vs.frame / MORPH_FRAMES);
+            const cur = vs.sites.map((s, i) => {
+              let x = lerp(s[0], vs.targets[i][0], et);
+              let y = lerp(s[1], vs.targets[i][1], et);
+              const dx = x - vs.mouseX, dy = y - vs.mouseY;
+              const d = Math.sqrt(dx * dx + dy * dy);
+              if (d < vs.influenceR && d > 0) {
+                const force = (1 - d / vs.influenceR) * PUSH_STRENGTH;
+                x += (dx / d) * vs.influenceR * force;
+                y += (dy / d) * vs.influenceR * force;
+                x = Math.max(vs.bbox.x, Math.min(vs.bbox.x + vs.bbox.w, x));
+                y = Math.max(vs.bbox.y, Math.min(vs.bbox.y + vs.bbox.h, y));
+              }
+              return [x, y];
+            });
+            for (let i = 0; i < vs.n; i++) {
+              if (!vs.paths[i] || !cur[i]) continue;
+              const pd = cellPath(i, cur, vs.n, vs.bbox);
+              if (pd) vs.paths[i].setAttribute("d", pd);
+              const dx = cur[i][0] - vs.mouseX, dy = cur[i][1] - vs.mouseY;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              const isHovered = dist < vs.influenceR;
+              const baseColor = vs.colors[i % vs.colors.length];
+              vs.paths[i].setAttribute("stroke", isHovered ? baseColor : "#e7ecf410");
+              vs.paths[i].setAttribute("fill", isHovered ? baseColor : "transparent");
+              vs.paths[i].setAttribute("fill-opacity", isHovered ? "0.35" : "0");
+            }
+          }
+        });
+        requestAnimationFrame(frameVoronoi);
+      }
+
+      window.addEventListener("resize", () => {
+        if (voronoiStarted) {
+          initVoronoi();
+        } else {
+          tryStartVoronoi();
+        }
+      });
+
+      function tryStartVoronoi() {
+        if (voronoiStarted) return true;
+        if (!initVoronoi()) return false;
+        voronoiStarted = true;
+        frameVoronoi();
+        return true;
+      }
+
+      // Multiple boot hooks to avoid race conditions with late layout/font paint.
+      requestAnimationFrame(tryStartVoronoi);
+      setTimeout(tryStartVoronoi, 120);
+      setTimeout(tryStartVoronoi, 320);
+      window.addEventListener("load", tryStartVoronoi);
+      window.addEventListener("pageshow", tryStartVoronoi);
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) tryStartVoronoi();
+      });
+    </script>
 </body>
+
 </html>
